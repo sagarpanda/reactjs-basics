@@ -1,27 +1,41 @@
 var path = require("path");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var DIST_DIR = path.resolve(__dirname, "dist");
-var SRC_DIR = path.resolve(__dirname, "src");
+var PUB_DIR = path.resolve(__dirname, "public");
+var APP_DIR = path.resolve(__dirname, "app");
+
+function htmlPublish() {
+  return new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'index.html'
+  })
+}
 
 var config = {
-    entry: SRC_DIR + "/app/index.js",
+    entry: APP_DIR + "/index.js",
     output: {
-        path: DIST_DIR + "/app",
-        filename: "bundle.js",
-        publicPath: "/app/"
+        path: PUB_DIR,
+        filename: "bundle.js"
     },
     module: {
         loaders: [
             {
-                test: /\.js?/,
-                include: SRC_DIR,
+                test: /\.(js|jsx)?/,
+                include: APP_DIR,
                 loader: "babel-loader",
                 query: {
                     presets: ["react", "es2015", "stage-2"]
                 }
             }
         ]
-    }
+    },
+    resolve: {
+      extensions: ['.js', '.jsx']
+    },
+    plugins: [
+      htmlPublish()
+    ],
+    devServer: { inline: true, port: 3000 }
 };
 
 module.exports = config;
