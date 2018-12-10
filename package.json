@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build",
-    "build": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
-    "build:prod": "cross-env NODE_ENV=development webpack -p"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --hot",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
@@ -23,14 +22,9 @@
     "react-dom": "^15.4.2"
   },
   "devDependencies": {
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-react": "^6.23.0",
-    "babel-preset-stage-2": "^6.22.0",
     "cross-env": "^5.0.5",
-    "html-webpack-plugin": "^2.30.1",
-    "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1"
+    "react-qstart": "^0.1.0",
+    "webpack": "^2.2.0",
+    "webpack-dev-server": "2.9.7"
   }
 }
